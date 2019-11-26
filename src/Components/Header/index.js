@@ -7,7 +7,7 @@ export default function Header() {
     <Container>
       <h1>Now Playing</h1>
       <a href="http://localhost:8888">
-        <button type="button">Loggin</button>
+        {/* <button type="button">Loggin</button> */}
       </a>
     </Container>
   );

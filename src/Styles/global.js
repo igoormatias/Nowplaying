@@ -1,8 +1,8 @@
-import { createGlobalStyle }   from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-import background from '../Assets/Images/background.jpg'
+import background from '../Assets/Images/background.jpg';
 
-export default createGlobalStyle `
+export default createGlobalStyle`
 *{
     margin:0;
     padding:0;

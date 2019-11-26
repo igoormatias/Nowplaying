@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.header`
+export const Container = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -15,49 +16,7 @@ export const Container = styled.header`
     align-items: center;
     margin: 10px;
   }
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    li {
-      align-items: center;
-      justify-content: center;
-
-      background: #1c1c1c;
-      opacity: 0.7;
-      width: 290px;
-      height: 190px;
-      border-radius: 5%;
-
-      span {
-        align-items: center;
-        justify-content: center;
-        display: flex;
-
-        img {
-          align-items: center;
-          justify-content: center;
-          display: flex;
-          flex-direction: row;
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-        }
-      }
-      h3 {
-        opacity: 1;
-        display: flex;
-        flex-direction: row;
-        color: #fff;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  }
 `;
-
 export const Input = styled.input`
   border: 0;
   flex: 1;
@@ -86,5 +45,52 @@ export const Button = styled.button`
 
   &:hover {
     background: #7159d9;
+  }
+`;
+
+export const ArtistList = styled.ul`
+  justify-items: self-end;
+  padding-left: 490px;
+  li {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    list-style: none;
+
+    width: 290px;
+    height: 190px;
+    border-radius: 5%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      background: #1c1c1c;
+      color: #fff;
+      opacity: 0.9;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+    span {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      h3 {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+      img {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
+    }
   }
 `;
