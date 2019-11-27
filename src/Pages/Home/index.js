@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from 'react';
 
+import SpotifyWebApi from 'spotify-web-api-js';
 import Header from '../../Components/Header';
 
 import { Container, Input, Button, ArtistList } from './styles';
 
-const token =
-  'BQCqrqF1NVzRyf-QYJc-FGljOaHfDFnZNUGLQzn3aD-bM2XrilIpmjMh80DNyMfL4KPShroTA_K41HirCA8Glxauvd2QsfU0dzxCyboOdwLD-FFUH4BvItSB4Dh5FiWsn-0OdhZWzYBCpZX7';
+const spotifyApi = new SpotifyWebApi();
 
 function Home() {
-  const [query, setQuery] = useState(['Chris Brown']);
+  const [query, setQuery] = useState(['']);
   const [artists, setArtists] = useState([]);
 
-  // const [token settoken] = useState(null);
+  const [token, settoken] = useState(null);
+
+  useEffect(() => {
+    const params = getHashParams();
+    settoken(params.access_token);
+
+    if (token) {
+      spotifyApi.setAccessToken(token);
+    }
+  }, []);
+
+  function getHashParams() {
+    const hashParams = {};
+    let e;
+    const r = /([^&;=]+)=?([^&;]*)/g;
+    const q = window.location.hash.substring(1);
+    e = r.exec(q);
+    while (e) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+      e = r.exec(q);
+    }
+
+    return hashParams;
+  }
 
   function fetchArtist() {
     const baseUrl = `https://api.spotify.com/v1/search?q=${query}&type=artist&limit=9`;
@@ -25,17 +48,14 @@ function Home() {
       .then(res => res.json())
       .then(data => setArtists(data.artists.items));
   }
-  useEffect(() => {
-    fetchArtist();
-  }, []);
 
-  // function authenticate() {
-  //   fetch('/api/me')
-  //   .then(res =  res.json())
-  //   .then(data => {
-  //     settoken(data.token);
-  //   });
-  // }
+  //  function authenticate() {
+  //    fetch('/api/me')
+  //    .then(res =  res.json())
+  //    .then(data => {
+  //      settoken(data.token);
+  //    });
+  //  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -52,7 +72,7 @@ function Home() {
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Busque artistas,albuns ou podcasts"
+            placeholder="Busque artistas"
           />
           <Button>Pesquisar</Button>
         </form>
